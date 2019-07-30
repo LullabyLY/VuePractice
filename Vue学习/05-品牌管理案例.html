@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+    <link href="lib/bootstrap-3.3.7.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">添加品牌</h3>
+        </div>
+        <div class="panel-body form-inline">
+            <label>
+                ID:<input type="text" v-model="id" class="form-control">
+            </label>
+            <label>
+                Name:<input type="text" v-model="name" class="form-control" @keyup.enter="add">
+            </label>
+            <input type="button" value="添加" class="btn btn-primary" @click="add">
+            <label>
+                Select:<input type="text" v-model="keyword" class="form-control" v-focus>
+            </label>
+        </div>
+    </div>
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID:</th>
+            <th>Name:</th>
+            <th>Ctime:</th>
+            <th>Operation:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in select(keyword)" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.ctime|timeFormat('yyyy-mm-dd')}}</td>
+            <td><a href="" @click.prevent="del(item.id)">删除</a> </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+</body>
+<script>
+    Vue.directive('focus',{
+        inserted:function (el) {
+            el.focus();
+        }
+    });
+    Vue.filter('timeFormat',function (dateStr,pattern="") {
+        var dt=new Date(dateStr);
+        var y=dt.getFullYear();
+        var m=(dt.getMonth()+1).toString().padStart(2,'0');
+        var d=(dt.getDate()).toString().padStart(2,'0');
+        if (pattern.toLowerCase()=='yyyy-mm-dd'){
+            return `${y}-${m}-${d}`;
+        } else{
+            var hh=(dt.getHours()).toString().padStart(2,'0');
+            var mm=(dt.getMinutes()).toString().padStart(2,'0');
+            var ss=(dt.getSeconds()).toString().padStart(2,'0');
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+        }
+    });
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            id:'',
+            name:'',
+            keyword:'',
+            list:[
+                {id:1,name:"奔驰",ctime:new Date()},
+                {id:2,name:"宝马",ctime:new Date()},
+                {id:3,name:"法拉利",ctime:new Date()},
+                ]
+        },
+        methods:{
+            add(){
+                var car={id:this.id,name:this.name,ctime:new Date()};
+                this.list.push(car);
+                this.id=this.name='';
+            },
+            del(id){
+                /*this.list.some((item,i)=>{
+                    if (item.id==id){
+                        this.list.splice(i,1);
+                        return true;
+                    }
+                });*/
+                var index=this.list.findIndex(item=>{
+                    if (item.id==id){
+                        return true;
+                    }
+                });
+                this.list.splice(index,1);
+            },
+            select(word){
+                /*var newList=[];
+                this.list.forEach(item=>{
+                    if(item.name.indexOf(word)!=-1){
+                        newList.push(item);
+                    }
+                });
+                return newList;*/
+                return this.list.filter(item=>{
+                    if (item.name.includes(word)){
+                        return item;
+                    }
+                });
+            }
+        }
+    })
+</script>
+</html>

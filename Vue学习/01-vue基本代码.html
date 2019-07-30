@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <!-- 导入vue包 -->
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{msg}}</p>
+</div>
+<script>
+    //创建一个vue实例：当导入包后，浏览器内存就多了一个Vue构造函数
+    new Vue({
+        el:"#app",
+        data:{
+            msg:"vue基础代码"
+        }
+    });
+
+
+</script>
+</body>
+</html>

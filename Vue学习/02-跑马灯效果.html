@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="跑马灯" @click="action">
+    <input type="button" value="停止" @click="stop">
+    <h4>{{msg}}</h4>
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            msg:"欢迎光临本店，希望您用餐愉快！",
+            timer:null
+        },
+        methods:{
+            action(){
+                if(this.timer!=null) return;
+                this.timer=setInterval(()=>{
+                    var start=this.msg.substring(0,1);
+                    var end=this.msg.substring(1);
+                    this.msg=end+start;
+                },200);
+            },
+            stop(){
+                clearInterval(this.timer);
+                this.timer=null;
+            }
+        }
+    })
+</script>
+</html>

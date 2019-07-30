@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="获取元素" @click="getElement">
+    <h3 ref="myh3">这是一个H3</h3>
+    <com ref="mycom"></com>
+</div>
+</body>
+<script>
+    var com={
+        template:'<h2>这是一个H2</h2>',
+        data:function (){
+            return {
+                msg:'123'
+            }
+        },
+        methods: {
+            show(){
+                console.log("哈哈哈");
+            }
+        }
+    };
+    var vm=new Vue({
+        el:'#app',
+        data:{},
+        methods:{
+            getElement(){
+                console.log(this.$refs.myh3.innerText);
+                console.log(this.$refs.mycom.msg);
+                this.$refs.mycom.show();
+            }
+        },
+        components:{
+            com
+        }
+    })
+</script>
+</html>
