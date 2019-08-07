@@ -48,7 +48,7 @@
 <script>
     Vue.http.options.root='http://localhost:63342/WebPractice/Vue学习/';
     Vue.http.options.emulateJSON=true;
-    Vue.filter('timeFormat',function (dateStr,pattern="") {
+        Vue.filter('timeFormat',function (dateStr,pattern="") {
         var dt=new Date(dateStr);
         var y=dt.getFullYear();
         var m=(dt.getMonth()+1).toString().padStart(2,'0');

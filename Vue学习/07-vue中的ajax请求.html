@@ -22,7 +22,12 @@
                 this.$http.get('http://localhost:63342/WebPractice/Vue学习/ajax/getlist.txt').then(function (result) {
                     console.log(result);
                 })
-            }
+            },
+     /*postInfo() {
+        this.$http.post('http://vue.studyit.io/api/post', {name:'zs'}, { emulateJSON: true }).then(result => {
+            console.log(result.body)
+        })
+    },*/
         }
     })
 </script>
