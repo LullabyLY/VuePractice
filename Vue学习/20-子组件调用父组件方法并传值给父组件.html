@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <com @func="show"></com>
+</div>
+</body>
+<script>
+    var com={
+        template:'<div><h1>子组件</h1><input type="button" value="父子组件" @click="myclick"></div>',
+        methods:{
+            myclick(){
+                this.$emit('func','ok')
+            }
+        }
+    };
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            msg:123
+        },
+        components:{
+            com
+        },
+        methods:{
+            show(val){
+                console.log(this.msg);
+                this.msg=val;
+                console.log(this.msg);
+            }
+        }
+    })
+</script>
+</html>

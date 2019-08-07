@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <add></add>
+    <add></add>
+    <add></add>
+</div>
+<template id='tmpl'>
+    <div>
+        <input type="button" value="+1" @click="addCount">
+        <h3>{{count}}</h3>
+        <hr>
+    </div>
+</template>
+</body>
+<script>
+    var cobj={count:0};
+    Vue.component('add',{
+        data(){
+           // return cobj
+            return {
+                count:0
+            }
+        },
+        methods:{
+            addCount(){
+                this.count++
+            }
+        },
+        template:'#tmpl'
+    });
+    var vm=new Vue({
+        el:'#app',
+        data:{},
+        methods:{}
+    })
+</script>
+</html>

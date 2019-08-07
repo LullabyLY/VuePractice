@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+    <style>
+        li{
+            border: 1px #9F9E9E dashed;
+            line-height: 30px;
+            margin: 10px;
+            padding-left: 10px;
+        }
+        li:hover{
+            background-color: #b7d2ff;
+        }
+    .v-enter,
+    .v-leave-to {
+        opacity: 0;
+        transform: translateY(500px);
+    }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 1s ease;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <label>ID：<input type="text" v-model="id"></label>
+    <label>Name：<input type="text" v-model="name"></label>
+    <input type="button" value="添加" @click="add">
+    <transition-group appear tag="ul">
+            <li v-for="(item,i) in list" :key="item.id" @click="del(i)">
+                {{item.id}}------{{item.name}}
+            </li>
+    </transition-group>
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id: '',
+            name: '',
+            list: [
+                { id: 1, name: '赵高' },
+                { id: 2, name: '秦桧' },
+                { id: 3, name: '严嵩' },
+                { id: 4, name: '魏忠贤' }
+            ]
+        },
+        methods: {
+            add() {
+                this.list.push({ id: this.id, name: this.name });
+                this.id = this.name = ''
+            },
+            del(i) {
+                this.list.splice(i, 1);
+            }
+        }
+    });
+
+</script>
+</html>
