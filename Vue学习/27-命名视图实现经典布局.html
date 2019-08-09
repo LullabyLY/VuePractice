@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+    <script src="lib/vue-router-3.0.1.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            margin: 0;
+            padding: 0;
+        }
+        .headbox{
+            background-color: lightgreen;
+            height: 80px;
+        }
+        .content{
+            display: flex;
+            height: 520px;
+        }
+        .leftbox{
+            background-color: lightblue;
+            flex: 2;
+        }
+        .mainbox{
+            background-color: lightgoldenrodyellow;
+            flex: 8;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+    <div class="content">
+        <router-view name="left"></router-view>
+        <router-view name="main"></router-view>
+    </div>
+
+</div>
+</body>
+<script>
+    var header={
+        template:'<h1 class="headbox">header</h1>'
+    };
+    var leftbox={
+        template:'<h1 class="leftbox">left</h1>'
+    };
+    var mainbox={
+        template:'<h1 class="mainbox">main</h1>'
+    };
+    var router=new VueRouter({
+        routes:[
+            {path:'/',components:{
+                'default':header,
+                    'left':leftbox,
+                    'main':mainbox
+                }}
+        ]
+    });
+    var vm=new Vue({
+        el:'#app',
+        data:{},
+        router,
+        methods:{}
+    })
+</script>
+</html>

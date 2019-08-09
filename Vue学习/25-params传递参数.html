@@ -15,7 +15,11 @@
 </body>
 <script>
     var com1={
-        template: '<h1>登录模块----{{$route.params.id}}----{{$route.params.name}}</h1>'
+        template: '<h1>登录模块----{{$route.params.id}}----{{$route.params.name}}</h1>',
+        created(){ // 组件的生命周期钩子函数
+            console.log(this.$route)
+            // console.log(this.$route.query.id)
+        }
     };
     var com2={
         template: '<h1>注册模块</h1>'
