@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+<p>1111111</p>
+</div>
+</body>
+<script>
+    var login={
+        template:'<h3>登录模块</h3>'
+    };
+    var vm=new Vue({
+        el:'#app',
+        data:{},
+        methods:{},
+        render:function (createElement) {
+            return createElement(login);
+        }
+    })
+</script>
+</html>
