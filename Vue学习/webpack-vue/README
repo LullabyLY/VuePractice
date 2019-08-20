@@ -74,7 +74,7 @@ main.js：项目的js入口文件
 ```
 5. 直接在页面上引用`main.js`会报错，因为浏览器不认识`import`这种高级的JS语法，需要使用webpack进行处理，webpack默认会把这种高级的语法转换为低级的浏览器能识别的语法；
 6. 运行`webpack 要打包的文件路径 输出文件路径`对`main.js`进行处理：
-```javascript
+```
 webpack src/js/main.js dist/bundle.js
 ```
 7. 在index.html文件中引入打包好的文件
@@ -137,7 +137,7 @@ webpack src/js/main.js dist/bundle.js
 ###### 配置命令参数方式
 方式一：
 
-```javascript
+```
  "dev": "webpack-dev-server --contentBase src --open --port 3000 --hot"
 ```
 方式二：
